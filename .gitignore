@@ -5,6 +5,8 @@ Library/**
 Assets/*.meta
 Assets/*/**.png
 Assets/Stripe/**
+Assets/Animations/**
+Assets/TextMesh Pro/**
 Logs/**
 ProjectSettings/**
 Temp/**
