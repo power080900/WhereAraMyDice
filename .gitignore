@@ -1,0 +1,13 @@
+.vscode/**
+Packages/**
+Assets/Settings/**
+Library/**
+Assets/*.meta
+Assets/*/**.png
+Assets/Stripe/**
+Logs/**
+ProjectSettings/**
+Temp/**
+UserSettings/**
+Assembly-CSharp.csproj
+WhereAraMyDice.sln
