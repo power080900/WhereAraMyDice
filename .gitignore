@@ -5,7 +5,10 @@ Library/**
 Assets/*.meta
 Assets/*/**.png
 Assets/Stripe/**
-Assets/Animations/**
+Assets/Animation/**
+Assets/Layer/**
+Assets/Prefabs/**
+Assets/Scenes/**
 Assets/TextMesh Pro/**
 Logs/**
 ProjectSettings/**
