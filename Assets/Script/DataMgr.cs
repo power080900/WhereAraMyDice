@@ -5,7 +5,8 @@ public class DataMgr : MonoBehaviour
     public enum Character
     {
         Knight,
-        Archer, // Magician 추가 가능
+        Archer, 
+        Magician
     }
 
     public static DataMgr instance;
