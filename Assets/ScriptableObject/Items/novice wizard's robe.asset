@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d846af10a5a83a4abb8619d5aa0c000, type: 3}
-  m_Name: Low-level wizard's rob
+  m_Name: novice wizard's robe
   m_EditorClassIdentifier: 
   itemName: Low-level wizard's rob
   rarity: 0
