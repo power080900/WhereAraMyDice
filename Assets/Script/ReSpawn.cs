@@ -1,9 +1,10 @@
 using UnityEngine;
-using System.Collections; // 코루틴에 필요한 네임스페이스만 포함
-using System.Collections.Generic; // 딕셔너리 등 제네릭 컬렉션에 필요
+using System.Collections;
+using System.Collections.Generic;
 
 public class ReSpawn : MonoBehaviour
 {
+    public GameObject mainPanel;   // MainPanel 참조
     public GameObject[] charPreFabs;  // 캐릭터 프리팹들
     private GameObject player;  // 플레이어 캐릭터
     private Animator anim;  // 캐릭터 애니메이터
@@ -27,7 +28,23 @@ public class ReSpawn : MonoBehaviour
             Debug.Log("Items for " + DataMgr.instance.selectedCharacter + ": " + string.Join(", ", items));
         }
 
+        // 초기 위치 및 크기 설정
         player.transform.position = transform.position;
+
+        // 생성된 캐릭터를 MainPanel의 하위로 설정
+        if (mainPanel != null)
+        {
+            player.transform.SetParent(mainPanel.transform, false);
+
+            // 위치 수정
+            player.transform.localPosition = new Vector3(-1120f, -380f, 0f); // 원하는 위치로 조정
+            Debug.Log($"Player Local Position set to: {player.transform.localPosition}");
+
+            // 크기 수정
+            player.transform.localScale = new Vector3(300f, 300f, 0); // 원하는 크기로 조정
+            Debug.Log($"Player Local Scale set to: {player.transform.localScale}");
+        }
+
         anim = player.GetComponent<Animator>();
         anim.SetBool("run", true);
         targetPosition = player.transform.position + new Vector3(5f, 0f, 0f);
@@ -36,6 +53,22 @@ public class ReSpawn : MonoBehaviour
 
     void Update()
     {
+        // MainPanel이 비활성화 상태라면 동작하지 않음
+        if (mainPanel == null || !mainPanel.activeSelf)
+        {
+            return;
+        }
+
+        if (!mainPanel.activeSelf)
+        {
+            player.SetActive(false);
+            return;
+        }
+        else
+        {
+            player.SetActive(true); // MainPanel 활성화 시 player도 활성화
+        }
+
         if (isMoving)
         {
             player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -72,7 +105,7 @@ public class ReSpawn : MonoBehaviour
         };
     }
 
-    private System.Collections.IEnumerator PlayAnimationFor2Seconds()
+    private IEnumerator PlayAnimationFor2Seconds()
     {
         isAnimating = true;
         animationTimer = 2f;
